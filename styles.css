@@ -241,6 +241,9 @@ body {
 .f-rank-border {
   border: 5px solid var(--f-rank);
 }
+.x-rank-border {
+  border: 5px solid var(--x-rank);
+}
 .no-rank-border {
   border: none;
 }
@@ -362,6 +365,9 @@ body {
 }
 .bg-f {
   background-color: var(--f-rank);
+}
+.bg-x {
+  background-color: var(--x-rank);	
 }
 .eliminated .ranking__entry-icon-badge {
   background-color: var(--no-rank);
