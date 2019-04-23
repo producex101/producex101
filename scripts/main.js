@@ -389,31 +389,31 @@ function removeRankedTrainee(trainee) {
   return false;
 }
 
-// const currentURL = "https://producex101.github.io/producex101/";
-// // Serializes the ranking into a string and appends that to the current URL
-// function generateShareLink() {
-//   let shareCode = ranking.map(function (trainee) {
-//     let twoCharID = ("0" + trainee.id).slice(-2); // adds a zero to front of digit if necessary e.g 1 --> 01
-//     return twoCharID;
-//   }).join("");
-//   console.log(shareCode);
-//   shareCode = btoa(shareCode);
-//   shareURL = currentURL + "?r=" + shareCode;
-//   showShareLink(shareURL);
-// }
+const currentURL = "https://producex101.github.io/producex101/";
+// Serializes the ranking into a string and appends that to the current URL
+function generateShareLink() {
+  let shareCode = ranking.map(function (trainee) {
+    let twoCharID = ("0" + trainee.id).slice(-2); // adds a zero to front of digit if necessary e.g 1 --> 01
+    return twoCharID;
+  }).join("");
+  console.log(shareCode);
+  shareCode = btoa(shareCode);
+  shareURL = currentURL + "?r=" + shareCode;
+  showShareLink(shareURL);
+}
 
-// function showShareLink(shareURL) {
-//   let shareBox = document.getElementById("getlink-textbox");
-//   shareBox.value = shareURL;
-//   document.getElementById("getlink-textbox").style.display = "block";
-//   document.getElementById("copylink-button").style.display = "block";
-// }
+function showShareLink(shareURL) {
+  let shareBox = document.getElementById("getlink-textbox");
+  shareBox.value = shareURL;
+  document.getElementById("getlink-textbox").style.display = "block";
+  document.getElementById("copylink-button").style.display = "block";
+}
 
-// function copyLink() {
-//   let shareBox = document.getElementById("getlink-textbox");
-//   shareBox.select();
-//   document.execCommand("copy");
-// }
+function copyLink() {
+  let shareBox = document.getElementById("getlink-textbox");
+  shareBox.select();
+  document.execCommand("copy");
+}
 
 // holds the list of all trainees
 var trainees = [];
