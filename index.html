@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-122340888-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-122340888-1');
+  </script>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Produce X101 Ranker</title>
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+  <meta name="viewport" content="initial-scale = 2.0, maximum-scale=1.0" />
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="stylesheet" type="text/css" media="screen" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Roboto+Condensed:400,700" rel="stylesheet">
+</head>
+<body>
+  <div id="top-banner">
+
+    <img id="banner-image" src="assets/pdx_logo.png"/>
+    <p id="banner-title">PRODUCE X 101 RANKER</p>
+    <p id="banner-subtitle">Make your own lineup!</p>
+  </div>
+  <div class="flex-container padded-box">
+    <div>
+      <div id="tooltip-container">
+        <!-- add tool tip faq stuff here -->
+      </div>
+      <div id="table">
+        <div id="table__filter-container">
+          <input id="table__filter-input" oninput="filterTrainees(event)" type="text" placeholder="Search"/>
+        </div>
+        <div id="table__entry-container">
+          <!-- <div class="table__entry">
+            <div class="table__entry-icon">
+              <img class="table__entry-img" src="assets/trainees/LeeGaeun.jpg" />
+              <div class="table__entry-icon-border a-rank-border"></div>
+              <img class="table__entry-check" src="assets/check.png"/>
+            </div>
+            <div class="table__entry-text">
+              <strong><span class="name">Lee Gaeun</span></strong>
+              <span class="hangul">(이가은)</span>
+              <span class="company">PLEDIS ENTERTAINMENT</span>
+            </div>
+          </div> -->
+        </div>
+      </div>
+      <div id="filters-container">
+        <div id="filters-header"><strong>Filters</strong></div>
+        <div>
+          <input type="checkbox" name="show-eliminated" id="show-eliminated" onclick="showEliminatedClick(event)"/>
+          <label class="checkbox-label" for="show-eliminated">Show Eliminated (At Bottom)</label>
+        </div>
+        <div>
+          <input type="checkbox" name="show-top11" id="show-top11" onclick="showTop11Click(event)"/>
+          <label class="checkbox-label" for="show-top11">Show Current Top 12</label>
+        </div>
+      </div>
+      <div id="sharelink-container">
+        <!-- button -->
+        <input type="button" id="getlink-button" value="Get link" onclick="generateShareLink()"/>
+        <!-- text box -->
+        <input type="text" placeholder="http://" id="getlink-textbox" readonly/>
+        <!-- button in text box -->
+        <input type="button" id="copylink-button" value="Copy" onclick="copyLink()"/>
+      </div>
+    </div>
+    <div id="ranking__pyramid">
+      <div id="ranking__title"><strong>TOP 11</strong></div>
+      <div class="ranking__row">
+        <!-- <div class="ranking__entry">
+          <div class="ranking__entry-icon">
+            <img class="ranking__entry-img" src="assets/trainees/LeeGaeun.jpg" />
+            <div class="ranking__entry-icon-border a-rank-border"></div>
+            <div class="ranking__entry-icon-badge">1</div>
+          </div>
+          <div class="ranking__row-text">
+            <div class="name"><strong>Lee Gaeun</strong></div>
+            <div class="company">PLEDIS ENT.</div>
+          </div>
+        </div> -->
+      </div>
+      <div class="ranking__row"></div>
+      <div class="ranking__row"></div>
+      <div class="ranking__row"></div>
+    </div>
+  </div>
+    <footer>
+        <p>Originally made by <a href="https://produce48.github.io/" target="https://produce48.github.io/">Produce48.github.io</a> please dont sue us </p>
+        <p>Come join us on our <a href="https://discord.gg/2aVqMKX" target="https://discord.gg/2aVqMKX">Produce X 101 Discord</a> ! </p>
+    </footer>
+
+  <!-- Load in script files -->
+  <script src="scripts/csv.js"></script>
+  <script src="scripts/dragula.min.js"></script>
+  <script src="scripts/dragdrop.js"></script>
+  <script src="scripts/traineesort.js"></script>
+  <script src="scripts/main.js"></script>
+
+</body>
+</html>

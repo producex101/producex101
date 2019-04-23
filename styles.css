@@ -1,0 +1,398 @@
+/* define constants up here */
+:root {
+  --banner-bg-start: #0af;
+  --banner-bg-end: #0048fc;
+  --produce-gray: #e4e4e4;
+  --search-text-gray: #949494;
+  --search-gray: #f2f2f2;
+  --affil-gray: #909090;
+  --name-gray: #2b2b2b;
+  --other-name-gray: #444444;
+  --ranking-affil-gray: #989898;
+  --save-box-gray: #b1b1b1;
+
+  --checked-blue: #052ae2CC;
+
+  /* ranking border colors */
+  --a-rank: #fb4a8c;
+  --b-rank: #fc840c;
+  --c-rank: #ffc407;
+  --d-rank: #19b468;
+  --f-rank: #a6a6a4;
+  --x-rank: ##000000;
+  --no-rank: #707070;
+}
+
+p {
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  display: inline-block;
+  min-width: 100%;
+  /*TODO: I had the weirdest bug where if i don't have this background white the top banner would disappear
+  it's super late right now and I'm not sure what is going on i need to look into this later */
+  background-color: white;
+}
+
+/* Styles for banner */
+#top-banner {
+  background: radial-gradient(circle, var(--banner-bg-start), var(--banner-bg-end) 60%);
+  /* background-color: var(--banner-bg-color); */
+  padding: 25px;
+
+  /* these will be unnecessary once we get the banner image */
+  color: white;
+  text-align: center;
+}
+#banner-image {
+  width: 125px;
+  margin-bottom: 15px;
+}
+#banner-title {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 16px;
+}
+#banner-subtitle {
+  font-family: 'Roboto Condensed', sans-serif;
+  color: #f3cdd3;
+  font-size: 12px;
+}
+
+/* Styles for table */
+#table {
+  height: 40vh;
+  min-height: 350px;
+  width: 300px;
+  box-shadow: 0px 2px 4px 0.1px var(--produce-gray);
+  border-radius: 8px;
+  border: 1px solid var(--produce-gray);
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+#table__filter-container {
+  padding: 8px;
+  border-bottom: 1px solid var(--produce-gray);
+}
+#table__filter-input {
+  padding: 5px;
+  padding-left: 25px;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 3px;
+  background-color: var(--search-gray);
+  border: none;
+  outline: 0;
+  /* setting up search icon */
+  background-image: url("assets/search.png");
+  background-size: 10px 10px;
+  background-position: 7px 7px;
+  background-repeat: no-repeat;
+}
+::placeholder {
+  color: var(--search-text-gray);
+}
+
+/* Styles for filtering at bottom of table */
+#filters-container {
+  margin: 10px;
+}
+.checkbox-label {
+  font-size: 12px;
+  color: var(--affil-gray);
+}
+
+/* Styles for share link functionality */
+#sharelink-container {
+  margin: 10px;
+  display: flex;
+}
+#getlink-button {
+  border: none;
+  border-radius: 3px;
+  padding: 4px 6px 4px 6px;
+  background-color: #068bcb;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+}
+#getlink-button:active { /* these styles are active while get link is being pressed */
+  background-color: #064664;
+}
+#getlink-textbox {
+  margin-left: 5px;
+  border: 1px solid var(--save-box-gray);
+  border-radius: 3px;
+  box-sizing: border-box;
+  padding: 5px;
+  padding-right: 50px;
+  flex: 1;
+  display:none;
+}
+#copylink-button {
+  height: inherit;
+  width: 50px;
+  margin-left: -50px;
+  border: 1px solid var(--save-box-gray);
+  border-radius: 0px 3px 3px 0;
+  background-color: var(--save-box-gray);
+  font-weight: 700;
+  display:none;
+}
+#copylink-button:active { /* these styles are active while copylink is being pressed */
+  background-color: var(--other-name-gray);
+}
+
+/* Styles for table entries */
+#table__entry-container {
+  overflow-y: scroll;
+}
+.table__entry {
+  display: flex;
+  align-items: flex-start;
+  border-bottom: 1px solid var(--produce-gray);
+  cursor: pointer;
+}
+.table__entry:last-child {
+	border-bottom: none;
+}
+.table__entry:hover {
+  background-color: #f0f0f0;
+}
+.table__entry-icon {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  margin: 6px 8px;
+  display: block;
+  box-sizing: border-box;
+  position: relative;
+  /* background-image: url(assets/trainees/leegaeun.jpg);
+  background-size: 60px; */
+}
+.table__entry-img {
+  border-radius: 50%;
+  width: inherit;
+  height: inherit;
+}
+.eliminated .table__entry-img {
+  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+}
+/* only applied when an entry is selected/checked */
+.table__entry-check {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: inherit;
+  height: inherit;
+  border-radius: 50%;
+  /* blue background */
+  background-color: var(--checked-blue);
+  /* the padding insets the checkbox (makes it bigger/smaller) */
+  padding: 10px;
+  box-sizing: border-box;
+}
+.table__entry-icon-border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: inherit;
+  height: inherit;
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+.table__entry-icon-crown, .ranking__entry-icon-crown {
+  position: absolute;
+  padding: 2px;
+  box-sizing: border-box;
+  top: -5px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #e3e3e3;
+  background-image: url(assets/crown.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-origin: content-box;
+}
+/* Different entry borders */
+.a-rank-border {
+  border: 5px solid var(--a-rank);
+}
+.b-rank-border {
+  border: 5px solid var(--b-rank);
+}
+.c-rank-border {
+  border: 5px solid var(--c-rank);
+}
+.d-rank-border {
+  border: 5px solid var(--d-rank);
+}
+.f-rank-border {
+  border: 5px solid var(--f-rank);
+}
+.no-rank-border {
+  border: none;
+}
+.eliminated .table__entry-icon-border {
+  border: 5px solid var(--no-rank);
+}
+.eliminated .ranking__entry-icon-border {
+  border: 5px solid var(--no-rank);
+}
+.ranking__entry-icon-border.dragged-over { /* defines a border for when you drag over a trainee in ranking */
+  border: 5px solid var(--checked-blue);
+}
+
+.table__entry-text {
+  margin: auto 5px auto 5px;
+  /* margin: auto auto; */
+}
+.table__entry-text .name {
+  font-size: 12px;
+  color: var(--name-gray);
+}
+.table__entry .hangul {
+  font-size: 12px;
+  color: var(--other-name-gray);
+}
+.table__entry .companyandyear {
+  font-size: 10px;
+  color: var(--affil-gray);
+  display: block;
+}
+
+/* Ranking Styles */
+#ranking__pyramid {
+  /* min-width: 350px; */
+  margin: 40px 40px 10px 40px;
+  display: flex;
+  flex-direction: column;
+}
+#ranking__title {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+}
+.ranking__row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.ranking__entry-view {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  margin: 10px 24px 8px 24px;
+}
+.ranking__entry-icon {
+  border-radius: 50%;
+  width: inherit;
+  height: inherit;
+  display: inline-block;
+  box-sizing: border-box;
+  position: relative;
+}
+.ranking__entry-img {
+  border-radius: 50%;
+  width: inherit;
+  height: inherit;
+}
+.eliminated .ranking__entry-img {
+  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+}
+.ranking__entry-icon-border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: inherit;
+  height: inherit;
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+.ranking__entry-icon-badge {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  left: 0;
+  right: 0;
+  bottom: -5px;
+  margin: auto;
+  border-radius: 50%;
+  background-color: #068bcb;
+  box-sizing: border-box;
+  padding: 2px;
+  /* badge text options */
+  font-weight: 900;
+  font-size: 8px;
+  text-align: center;
+  color: white;
+}
+.ranking__row-text {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 11px;
+  text-align: center;
+}
+
+/* Styles for different badge colors */
+.bg-no {
+  background-color: var(--no-rank);
+}
+.bg-a {
+  background-color: var(--a-rank);
+}
+.bg-b {
+  background-color: var(--b-rank);
+}
+.bg-c {
+  background-color: var(--c-rank);
+}
+.bg-d {
+  background-color: var(--d-rank);
+}
+.bg-f {
+  background-color: var(--f-rank);
+}
+.eliminated .ranking__entry-icon-badge {
+  background-color: var(--no-rank);
+}
+
+.ranking__entry .company {
+  color: var(--ranking-affil-gray);
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 9px;
+  letter-spacing: 0.2px;
+}
+
+/* Generic Styles */
+.padded-box {
+  padding: 40px;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap-reverse;
+  /* align-items: center; */
+  justify-content: center;
+}
+
+.drag-cursor {
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+
+footer{
+    text-align: center;
+    font-size: 12px;
+}
