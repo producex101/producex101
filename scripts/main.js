@@ -69,7 +69,7 @@ trainee: {
   image: ...
   selected: false/true // whether user selected them
   eliminated: false/true
-  top12: false/true
+  top10: false/true
 }
 */
 function convertCSVArrayToTraineeData(csvArrays) {
@@ -319,7 +319,7 @@ function swapTrainees(index1, index2) {
 // <original> is the original name as appearing on csv
 // all of it should be lower case
 const alternateRomanizations = {
-//   'heo yunjin': ['heo yoonjin', 'huh yoonjin', 'huh yunjin'],
+  //'heo yunjin': ['heo yoonjin', 'huh yoonjin', 'huh yunjin']
   'hwang yunseong': ['hwang yunseong', 'hwang yoonseong']
 };
 
