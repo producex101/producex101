@@ -66,9 +66,9 @@ function showEliminatedClick(event) {
 function showTop12Click(event) {
   let checkbox = event.target;
   if (checkbox.checked) {
-    showTop12 = true;
+    showTop10 = true;
   } else {
-    showTop12 = false;
+    showTop10 = false;
   }
   rerenderTable();
   rerenderRanking();
