@@ -402,3 +402,39 @@ footer{
     text-align: center;
     font-size: 12px;
 }
+
+@media screen and (max-width: 480px) {
+    #banner-image {
+        width: 80px;
+        margin-bottom: 10px;
+    }
+
+    .padded-box {
+        padding: 0 40px;
+    }
+
+    #table {
+        width: 500px;
+    }
+
+    .table__entry-text .name {
+        font-size: 14px;
+    }
+    .table__entry .hangul {
+        font-size: 14px;
+    }
+    .table__entry .companyandyear {
+        font-size: 12px;
+    }
+
+    #table__filter-input {
+        height: 60px;
+        padding-left: 55px;
+        background-size: 46px;
+    }
+
+    #getlink-button {
+        width: 100%;
+        height: 50px;
+    }
+}
