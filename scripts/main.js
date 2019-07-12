@@ -393,7 +393,17 @@ function copyLink() {
   document.execCommand("copy");
 }
 
-var isJapanese = (window.navigator.userLanguage || window.navigator.language || window.navigator.browserLanguage).substr(0,2) == "ja" ;
+function setLang() {
+  var urlParams = new URLSearchParams(window.location.search)
+  if(urlParams.get("lang")){
+    isJapanese = urlParams.get("lang") == "ja"
+  }else{
+    isJapanese = (window.navigator.userLanguage || window.navigator.language || window.navigator.browserLanguage).substr(0,2) == "ja" ;
+  }
+  if(isJapanese){
+    document.getElementById("switch_lang").style.display = "block";
+  }
+}
 
 // holds the list of all trainees
 var trainees = [];
@@ -402,6 +412,9 @@ var filteredTrainees = [];
 // holds the ordered list of rankings that the user selects
 var ranking = newRanking();
 const rowNums = [1, 2, 3, 5];
+// holds true if using japanese
+var isJapanese = false;
+setLang();
 //window.addEventListener("load", function () {
   populateRanking();
   readFromCSV("./trainee_info.csv");
