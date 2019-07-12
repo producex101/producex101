@@ -77,6 +77,7 @@ function convertCSVArrayToTraineeData(csvArrays) {
     trainee = {};
     trainee.name_romanized = traineeArray[0];
     trainee.name_hangul = traineeArray[1];
+    trainee.name_japanese = traineeArray[2];
     trainee.company = traineeArray[3];
     trainee.grade = traineeArray[4];
     trainee.birthyear = traineeArray[5];
@@ -85,7 +86,6 @@ function convertCSVArrayToTraineeData(csvArrays) {
     trainee.id = parseInt(traineeArray[7]) - 1; // trainee id is the original ordering of the trainees in the first csv
     trainee.image =
     trainee.name_romanized.replace(" ", "").replace("-", "") + ".jpg";
-    trainee.name_japanese = traineeArray[2];
     return trainee;
   });
   filteredTrainees = trainees;
@@ -97,6 +97,7 @@ function newTrainee() {
   return {
     id: -1, // -1 denotes a blank trainee spot
     name_romanized: '&#8203;', // this is a blank character
+    name_japanese: '&#8203;', // this is a blank character
     company: '&#8203;', // this is a blank character
     grade: 'no',
     image: 'emptyrank.png',
