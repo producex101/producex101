@@ -76,13 +76,7 @@ function convertCSVArrayToTraineeData(csvArrays) {
   trainees = csvArrays.map(function(traineeArray, index) {
     trainee = {};
     trainee.name_romanized = traineeArray[0];
-    if (traineeArray[2] === "-") {
-      // trainee only has hangul
-      trainee.name_hangul = traineeArray[1];
-    } else {
-      trainee.name_japanese = traineeArray[1];
-      trainee.name_hangul = traineeArray[2];
-    }
+    trainee.name_hangul = traineeArray[1];
     trainee.company = traineeArray[3];
     trainee.grade = traineeArray[4];
     trainee.birthyear = traineeArray[5];
@@ -90,7 +84,8 @@ function convertCSVArrayToTraineeData(csvArrays) {
     trainee.top11 = traineeArray[6] === 't'; // sets trainee to top 11 if 't' appears in 6th column
     trainee.id = parseInt(traineeArray[7]) - 1; // trainee id is the original ordering of the trainees in the first csv
     trainee.image =
-      trainee.name_romanized.replace(" ", "").replace("-", "") + ".jpg";
+    trainee.name_romanized.replace(" ", "").replace("-", "") + ".jpg";
+    trainee.name_japanese = traineeArray[2];
     return trainee;
   });
   filteredTrainees = trainees;
@@ -191,7 +186,7 @@ function populateTableEntry(trainee) {
       }
     </div>
     <div class="table__entry-text">
-      <span class="name"><strong>${trainee.name_romanized}</strong></span>
+      <span class="name"><strong>${isJapanese?trainee.name_japanese:trainee.name_romanized}</strong></span>
       <span class="hangul">(${trainee.name_hangul})</span>
       <span class="companyandyear">${trainee.company.toUpperCase()} •
       ${trainee.birthyear}</span>
@@ -265,7 +260,7 @@ function populateRankingEntry(trainee, currRank) {
       }
     </div>
     <div class="ranking__row-text">
-      <div class="name"><strong>${trainee.name_romanized}</strong></div>
+      <div class="name"><strong>${isJapanese?trainee.name_japanese:trainee.name_romanized}</strong></div>
       <div class="company">${modifiedCompany}</div>
     </div>
   </div>`;
@@ -328,7 +323,10 @@ function filterTrainees(event) {
   let filterText = event.target.value.toLowerCase();
   // filters trainees based on name, alternate names, and company
   filteredTrainees = trainees.filter(function (trainee) {
-    let initialMatch = includesIgnCase(trainee.name_romanized, filterText) || includesIgnCase(trainee.company, filterText);
+    let initialMatch = includesIgnCase(trainee.name_romanized, filterText)
+      || includesIgnCase(trainee.company, filterText)
+      || includesIgnCase(trainee.name_hangul, filterText)
+      || includesIgnCase(trainee.name_japanese, filterText);
     // if alernates exists then check them as well
     let alternateMatch = false;
     let alternates = alternateRomanizations[trainee.name_romanized.toLowerCase()]
@@ -394,6 +392,8 @@ function copyLink() {
   shareBox.select();
   document.execCommand("copy");
 }
+
+var isJapanese = (window.navigator.userLanguage || window.navigator.language || window.navigator.browserLanguage).substr(0,2) == "ja" ;
 
 // holds the list of all trainees
 var trainees = [];
